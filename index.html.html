@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>踩雷達人佑青哥｜私群限定預購</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --ink: #1A1510;
+    --gold: #C9A84C;
+    --gold-light: #E8D5A3;
+    --rust: #B85C38;
+    --muted: #6B6460;
+    --border: #DDD8D0;
+    --white: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    padding: 0 0 80px;
+  }
+
+  /* Header */
+  .header {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 40px 24px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(201,168,76,0.04) 40px,
+      rgba(201,168,76,0.04) 41px
+    );
+  }
+  .header-badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 3px;
+    padding: 4px 14px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .header h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(22px, 5vw, 32px);
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .header-sub {
+    font-size: 13px;
+    color: rgba(250,247,242,0.6);
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+  .flash-tag {
+    display: inline-block;
+    background: var(--rust);
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 12px;
+    letter-spacing: 1px;
+  }
+
+  /* Payment Info */
+  .payment-card {
+    margin: 24px 16px 0;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--gold);
+    padding: 20px;
+  }
+  .payment-card h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .payment-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .payment-label {
+    font-size: 12px;
+    color: var(--muted);
+    min-width: 60px;
+  }
+  .payment-value {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--ink);
+  }
+  .payment-note {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .payment-note a {
+    color: var(--rust);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  /* Shipping info */
+  .shipping-banner {
+    margin: 12px 16px 0;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid var(--gold-light);
+    padding: 10px 16px;
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+  }
+  .shipping-banner strong {
+    color: var(--rust);
+  }
+
+  /* Form */
+  .form-wrap {
+    margin: 20px 16px 0;
+  }
+
+  .section-label {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin: 28px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .field {
+    margin-bottom: 18px;
+  }
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  label .req {
+    color: var(--rust);
+    margin-left: 2px;
+  }
+  label .hint {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 300;
+    margin-left: 6px;
+  }
+  input[type="text"],
+  input[type="tel"],
+  input[type="datetime-local"],
+  select,
+  textarea {
+    width: 100%;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 0;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    color: var(--ink);
+    appearance: none;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--gold);
+  }
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  /* Products */
+  .products-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .product-option {
+    position: relative;
+  }
+  .product-option input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0; height: 0;
+  }
+  .product-option label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    margin: 0;
+    font-weight: 300;
+  }
+  .product-option input:checked + label {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.04);
+  }
+  .checkbox-box {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--border);
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .product-option input:checked + label .checkbox-box {
+    border-color: var(--gold);
+    background: var(--gold);
+  }
+  .checkbox-box::after {
+    content: '';
+    width: 5px;
+    height: 9px;
+    border: 2px solid transparent;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg) translateY(-1px);
+    transition: border-color 0.2s;
+  }
+  .product-option input:checked + label .checkbox-box::after {
+    border-color: #fff;
+  }
+  .product-info {
+    flex: 1;
+  }
+  .product-brand {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin-bottom: 2px;
+    text-transform: uppercase;
+  }
+  .product-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+    line-height: 1.4;
+  }
+  .product-spec {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .product-price {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--rust);
+    text-align: right;
+    flex-shrink: 0;
+    font-family: 'Noto Serif TC', serif;
+  }
+
+  /* qty note */
+  .qty-note {
+    margin-top: 10px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+  }
+  .qty-note label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-weight: 300;
+  }
+
+  /* Radio */
+  .radio-group {
+    display: flex;
+    gap: 10px;
+  }
+  .radio-option {
+    flex: 1;
+    position: relative;
+  }
+  .radio-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0; height: 0;
+  }
+  .radio-option label {
+    display: block;
+    text-align: center;
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 12px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+    margin: 0;
+    font-weight: 300;
+  }
+  .radio-option input:checked + label {
+    border-color: var(--gold);
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  /* Amount display */
+  .amount-display {
+    background: var(--ink);
+    padding: 16px;
+    margin-top: 6px;
+  }
+  .amount-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: rgba(250,247,242,0.6);
+    margin-bottom: 6px;
+  }
+  .amount-row.total {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(250,247,242,0.1);
+  }
+  #amount-input {
+    background: var(--ink);
+    border-color: rgba(250,247,242,0.2);
+    color: var(--gold);
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 0;
+    border-width: 0 0 1px 0;
+    width: 100%;
+  }
+
+  /* Submit */
+  .submit-area {
+    margin-top: 32px;
+  }
+  .submit-btn {
+    width: 100%;
+    background: var(--ink);
+    color: var(--gold);
+    border: none;
+    padding: 18px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .submit-btn:hover {
+    background: #2a2520;
+  }
+  .submit-btn:active {
+    transform: scale(0.99);
+  }
+  .submit-note {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 10px;
+    line-height: 1.7;
+  }
+
+  /* Success */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 60px 24px;
+    animation: fadeIn 0.4s ease;
+  }
+  .success-screen.show { display: block; }
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    font-size: 28px;
+  }
+  .success-screen h2 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+  .success-screen p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 8px;
+  }
+  .success-account {
+    background: var(--ink);
+    color: var(--gold);
+    padding: 16px;
+    margin: 20px 0;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 14px;
+    line-height: 2;
+    letter-spacing: 1px;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Amount summary */
+  .amount-summary {
+    background: var(--ink);
+    padding: 16px 20px;
+    margin-bottom: 18px;
+  }
+  .amount-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: rgba(250,247,242,0.65);
+    padding: 5px 0;
+  }
+  .amount-line.total {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-top: 10px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(250,247,242,0.12);
+  }
+  .free-tag {
+    color: #7ecfa0;
+    font-size: 11px;
+    margin-left: 6px;
+  }
+  .amount-empty {
+    background: var(--white);
+    border: 1px dashed var(--border);
+    padding: 16px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+
+  .error-msg {
+    font-size: 11px;
+    color: var(--rust);
+    margin-top: 4px;
+    display: none;
+  }
+  .field.error input,
+  .field.error select,
+  .field.error textarea {
+    border-color: var(--rust);
+  }
+  .field.error .error-msg { display: block; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-badge">Private Group Only</div>
+  <h1>踩雷達人佑青哥<br>私群限定預購</h1>
+  <div class="header-sub">Mizz 美滋滋｜私群專屬優惠</div>
+  <div class="flash-tag">⚡ 快閃優惠 5/12 – 5/14</div>
+</div>
+
+<!-- Payment Info -->
+<div class="payment-card">
+  <h3>匯款資訊</h3>
+  <div class="payment-row">
+    <span class="payment-label">銀行</span>
+    <span class="payment-value">合作金庫 006</span>
+  </div>
+  <div class="payment-row">
+    <span class="payment-label">帳號</span>
+    <span class="payment-value">0925-717-110203</span>
+  </div>
+  <div class="payment-note">
+    下單後請盡快完成匯款，並填寫匯款後五碼以便核對<br>
+    需併單或有任何問題請私訊 <a href="https://mizz.tw/line/oc" target="_blank">Mizz美滋滋官方 Line</a>
+  </div>
+</div>
+
+<div class="shipping-banner">
+  運費 $100｜滿 $1,499 免運
+</div>
+
+<!-- Form -->
+<div class="form-wrap" id="form-wrap">
+  <form id="order-form" novalidate>
+
+    <div class="section-label">購買者資料</div>
+
+    <div class="field" id="field-name">
+      <label>顧客姓名 <span class="req">*</span></label>
+      <input type="text" id="name" placeholder="請輸入真實姓名（取貨用）">
+      <div class="error-msg">請輸入姓名</div>
+    </div>
+
+    <div class="field" id="field-phone">
+      <label>手機號碼 <span class="req">*</span></label>
+      <input type="tel" id="phone" placeholder="09xxxxxxxx">
+      <div class="error-msg">請輸入有效的手機號碼</div>
+    </div>
+
+    <div class="section-label">選擇商品</div>
+
+    <div class="products-grid">
+
+      <div class="product-option">
+        <input type="checkbox" id="p1" name="products" value="HERMES大地-100ml-1950">
+        <label for="p1">
+          <div class="checkbox-box"></div>
+          <div class="product-info">
+            <div class="product-brand">Hermès</div>
+            <div class="product-name">大地男性淡香水</div>
+            <div class="product-spec">Terre d'Hermès｜100ml</div>
+          </div>
+          <div class="product-price">$1,950</div>
+        </label>
+      </div>
+
+      <div class="product-option">
+        <input type="checkbox" id="p2" name="products" value="CHLOE仙境花園北國雪松-150ml-4599">
+        <label for="p2">
+          <div class="checkbox-box"></div>
+          <div class="product-info">
+            <div class="product-brand">Chloé</div>
+            <div class="product-name">仙境花園北國雪松</div>
+            <div class="product-spec">150ml</div>
+          </div>
+          <div class="product-price">$4,599</div>
+        </label>
+      </div>
+
+      <div class="product-option">
+        <input type="checkbox" id="p3" name="products" value="JoMalone鼠尾草海鹽-30ml-1499">
+        <label for="p3">
+          <div class="checkbox-box"></div>
+          <div class="product-info">
+            <div class="product-brand">Jo Malone London</div>
+            <div class="product-name">鼠尾草 & 海鹽</div>
+            <div class="product-spec">Sage & Sea Salt｜30ml</div>
+          </div>
+          <div class="product-price">$1,499</div>
+        </label>
+      </div>
+
+    </div>
+
+    <div class="qty-note field" id="field-note">
+      <label>數量超過 1 件，或有其他商品要併單？<span class="hint">選填</span></label>
+      <textarea id="order-note" placeholder="例：大地香水 x2，另加購商城 XXXX 一瓶"></textarea>
+    </div>
+
+    <div class="section-label">金額確認</div>
+
+    <div class="amount-summary" id="amount-summary" style="display:none">
+      <div class="amount-line">
+        <span>商品小計</span>
+        <span id="subtotal-display">$0</span>
+      </div>
+      <div class="amount-line" id="shipping-line">
+        <span id="shipping-label">運費</span>
+        <span id="shipping-display">$100</span>
+      </div>
+      <div class="amount-line total">
+        <span>應匯款金額</span>
+        <span id="total-display">$0</span>
+      </div>
+    </div>
+
+    <div class="amount-empty" id="amount-empty">
+      請先勾選商品，系統將自動計算金額
+    </div>
+
+    <input type="hidden" id="amount">
+
+    <div class="section-label">匯款資訊</div>
+
+    <div class="field" id="field-transfer-time">
+      <label>匯款日期時間 <span class="req">*</span></label>
+      <input type="datetime-local" id="transfer-time">
+      <div class="error-msg">請選擇匯款時間</div>
+    </div>
+
+    <div class="field" id="field-transfer-last5">
+      <label>匯款帳號後五碼 <span class="req">*</span></label>
+      <input type="text" id="transfer-last5" placeholder="例：12345" maxlength="5">
+      <div class="error-msg">請填寫帳號後五碼</div>
+    </div>
+
+    <div class="section-label">運送方式</div>
+
+    <div class="field" id="field-shipping">
+      <label>請選擇 <span class="req">*</span></label>
+      <div class="radio-group">
+        <div class="radio-option">
+          <input type="radio" id="s1" name="shipping" value="超商取貨">
+          <label for="s1">超商取貨</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" id="s2" name="shipping" value="宅配">
+          <label for="s2">宅配到府</label>
+        </div>
+      </div>
+      <div class="error-msg" id="shipping-error" style="display:none">請選擇運送方式</div>
+    </div>
+
+    <div class="field" id="field-address">
+      <label>超商門市 或 宅配地址 <span class="req">*</span></label>
+      <textarea id="address" placeholder="例：7-11 板橋文化店，或：新北市板橋區 XXX 路 X 號"></textarea>
+      <div class="error-msg">請填寫取件資訊</div>
+    </div>
+
+    <div class="submit-area">
+      <button type="submit" class="submit-btn">確認送出訂單</button>
+      <div class="submit-note">
+        送出後請盡快完成匯款<br>
+        合作金庫 006｜0925-717-110203
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<!-- Success Screen -->
+<div class="success-screen" id="success-screen">
+  <div class="success-icon">✓</div>
+  <h2>訂單已收到！</h2>
+  <p>感謝你的下單，請盡快完成匯款</p>
+  <div class="success-account">
+    合作金庫 006<br>
+    0925-717-110203<br>
+    應匯金額：<span id="success-amount" style="font-size:20px">—</span><br>
+    <span style="font-size:12px;color:rgba(201,168,76,0.7)">匯款後保留收據，以後五碼對帳</span>
+  </div>
+  <p>確認收款後會盡快安排出貨<br>有問題請私訊 Mizz美滋滋 官方 Line</p>
+  <br>
+  <a href="https://mizz.tw/line/oc" target="_blank" style="color:var(--rust);font-size:13px;text-decoration:none;border-bottom:1px solid var(--rust);padding-bottom:2px">前往 Line 聯繫 →</a>
+</div>
+
+<script>
+  const SPREADSHEET_URL = '';
+
+  const PRICES = { p1: 1950, p2: 4599, p3: 1499 };
+  const FREE_SHIPPING_THRESHOLD = 1499;
+  const SHIPPING_FEE = 100;
+
+  function calcAmount() {
+    const checked = [...document.querySelectorAll('input[name="products"]:checked')];
+    const subtotal = checked.reduce((sum, cb) => sum + (PRICES[cb.id] || 0), 0);
+    const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : (subtotal > 0 ? SHIPPING_FEE : 0);
+    const total = subtotal + shipping;
+
+    const summaryEl = document.getElementById('amount-summary');
+    const emptyEl = document.getElementById('amount-empty');
+
+    if (subtotal === 0) {
+      summaryEl.style.display = 'none';
+      emptyEl.style.display = 'block';
+      document.getElementById('amount').value = '';
+      return;
+    }
+
+    summaryEl.style.display = 'block';
+    emptyEl.style.display = 'none';
+
+    document.getElementById('subtotal-display').textContent = '$' + subtotal.toLocaleString();
+
+    const shippingLabel = document.getElementById('shipping-label');
+    const shippingDisplay = document.getElementById('shipping-display');
+    if (shipping === 0) {
+      shippingLabel.innerHTML = '運費 <span class="free-tag">✓ 免運</span>';
+      shippingDisplay.textContent = '$0';
+    } else {
+      shippingLabel.textContent = '運費';
+      shippingDisplay.textContent = '$' + shipping;
+    }
+
+    document.getElementById('total-display').textContent = '$' + total.toLocaleString();
+    document.getElementById('amount').value = total;
+  }
+
+  document.querySelectorAll('input[name="products"]').forEach(cb => {
+    cb.addEventListener('change', calcAmount);
+  });
+
+  function validateField(id, condition) {
+    const field = document.getElementById('field-' + id);
+    if (!field) return condition;
+    if (!condition) {
+      field.classList.add('error');
+      return false;
+    } else {
+      field.classList.remove('error');
+      return true;
+    }
+  }
+
+  document.getElementById('order-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const amount = document.getElementById('amount').value;
+    const transferTime = document.getElementById('transfer-time').value;
+    const last5 = document.getElementById('transfer-last5').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const shipping = document.querySelector('input[name="shipping"]:checked');
+    const products = [...document.querySelectorAll('input[name="products"]:checked')].map(c => c.value);
+    const note = document.getElementById('order-note').value.trim();
+
+    let valid = true;
+    valid = validateField('name', name.length > 0) && valid;
+    valid = validateField('phone', /^09\d{8}$/.test(phone)) && valid;
+    valid = validateField('transfer-time', transferTime.length > 0) && valid;
+    valid = validateField('transfer-last5', last5.length === 5) && valid;
+    valid = validateField('address', address.length > 0) && valid;
+
+    const shippingError = document.getElementById('shipping-error');
+    if (!shipping) {
+      shippingError.style.display = 'block';
+      valid = false;
+    } else {
+      shippingError.style.display = 'none';
+    }
+
+    if (products.length === 0) {
+      alert('請至少選擇一項商品');
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    if (SPREADSHEET_URL) {
+      const data = { name, phone, products: products.join(' / '), note, amount, transferTime, last5, shipping: shipping?.value, address };
+      fetch(SPREADSHEET_URL, {
+        method: 'POST',
+        body: JSON.stringify(data)
+      }).catch(() => {});
+    }
+
+    document.getElementById('form-wrap').style.display = 'none';
+    const ss = document.getElementById('success-screen');
+    ss.classList.add('show');
+
+    const amountNum = parseInt(amount);
+    document.getElementById('success-amount').textContent = '$' + (amountNum || 0).toLocaleString();
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
