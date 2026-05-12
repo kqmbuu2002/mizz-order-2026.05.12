@@ -346,6 +346,53 @@
     font-size: 16px;
   }
 
+  /* qty stepper */
+  .qty-stepper {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .qty-btn {
+    width: 28px;
+    height: 28px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink);
+    user-select: none;
+    transition: background 0.15s;
+    flex-shrink: 0;
+  }
+  .qty-btn:hover { background: var(--gold-light); }
+  .qty-num {
+    width: 32px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    height: 28px;
+    line-height: 28px;
+    color: var(--ink);
+    background: var(--white);
+  }
+  .product-card {
+    display: flex;
+    align-items: stretch;
+    background: var(--white);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .product-card.active {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.04);
+  }
+
   /* qty note */
   .qty-note {
     margin-top: 10px;
@@ -607,52 +654,61 @@
 
     <div class="products-grid">
 
-      <div class="product-option">
-        <input type="checkbox" id="p1" name="products" value="HERMES大地-100ml-1950">
-        <label for="p1">
-          <img class="product-img" src="hermes.jpg" alt="Hermès 大地">
-          <div class="product-body">
-            <div class="checkbox-box"></div>
-            <div class="product-info">
-              <div class="product-brand">Hermès</div>
-              <div class="product-name">【T】大地男性淡香水-100ml</div>
-              <div class="product-spec">Terre d'Hermès｜100ml</div>
-            </div>
+      <div class="product-card" id="card-p1">
+        <img class="product-img" src="hermes.jpg" alt="Hermès 大地">
+        <div class="product-body">
+          <div class="product-info">
+            <div class="product-brand">Hermès</div>
+            <div class="product-name">大地男性淡香水</div>
+            <div class="product-spec">Terre d'Hermès｜100ml</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0">
             <div class="product-price">$1,950</div>
+            <div class="qty-stepper">
+              <button type="button" class="qty-btn" onclick="changeQty('p1',-1)">−</button>
+              <div class="qty-num" id="qty-p1">0</div>
+              <button type="button" class="qty-btn" onclick="changeQty('p1',1)">+</button>
+            </div>
           </div>
-        </label>
+        </div>
       </div>
 
-      <div class="product-option">
-        <input type="checkbox" id="p2" name="products" value="CHLOE仙境花園北國雪松-150ml-4599">
-        <label for="p2">
-          <img class="product-img" src="chloe.jpg" alt="Chloé 北國雪松">
-          <div class="product-body">
-            <div class="checkbox-box"></div>
-            <div class="product-info">
-              <div class="product-brand">Chloé</div>
-              <div class="product-name">仙境花園北國雪松-150ml</div>
-              <div class="product-spec">150ml</div>
-            </div>
+      <div class="product-card" id="card-p2">
+        <img class="product-img" src="chloe.jpg" alt="Chloé 北國雪松">
+        <div class="product-body">
+          <div class="product-info">
+            <div class="product-brand">Chloé</div>
+            <div class="product-name">仙境花園北國雪松</div>
+            <div class="product-spec">150ml</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0">
             <div class="product-price">$4,599</div>
+            <div class="qty-stepper">
+              <button type="button" class="qty-btn" onclick="changeQty('p2',-1)">−</button>
+              <div class="qty-num" id="qty-p2">0</div>
+              <button type="button" class="qty-btn" onclick="changeQty('p2',1)">+</button>
+            </div>
           </div>
-        </label>
+        </div>
       </div>
 
-      <div class="product-option">
-        <input type="checkbox" id="p3" name="products" value="JoMalone鼠尾草海鹽-30ml-1499">
-        <label for="p3">
-          <img class="product-img" src="jo.jpg" alt="Jo Malone 鼠尾草海鹽">
-          <div class="product-body">
-            <div class="checkbox-box"></div>
-            <div class="product-info">
-              <div class="product-brand">Jo Malone London</div>
-              <div class="product-name">鼠尾草 & 海鹽 - 30ml</div>
-              <div class="product-spec">Sage & Sea Salt｜30ml</div>
-            </div>
-            <div class="product-price">$1,499</div>
+      <div class="product-card" id="card-p3">
+        <img class="product-img" src="jo.jpg" alt="Jo Malone 鼠尾草海鹽">
+        <div class="product-body">
+          <div class="product-info">
+            <div class="product-brand">Jo Malone London</div>
+            <div class="product-name">鼠尾草 & 海鹽</div>
+            <div class="product-spec">Sage & Sea Salt｜30ml</div>
           </div>
-        </label>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0">
+            <div class="product-price">$1,499</div>
+            <div class="qty-stepper">
+              <button type="button" class="qty-btn" onclick="changeQty('p3',-1)">−</button>
+              <div class="qty-num" id="qty-p3">0</div>
+              <button type="button" class="qty-btn" onclick="changeQty('p3',1)">+</button>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -759,15 +815,24 @@
 </div>
 
 <script>
-  const SPREADSHEET_URL = '';
+  const SPREADSHEET_URL = 'https://script.google.com/macros/s/AKfycbyTw-l_IoK6YxfFNHHw5AkHLC4I9Zn5DHqcBonUJZCD2pjQkucWAB1CZoO_VLHsPNN0/exec';
 
   const PRICES = { p1: 1950, p2: 4599, p3: 1499 };
+  const NAMES = { p1: 'HERMES大地男性淡香水-100ml', p2: 'CHLOE仙境花園北國雪松-150ml', p3: 'JoMalone鼠尾草海鹽-30ml' };
   const FREE_SHIPPING_THRESHOLD = 1499;
   const SHIPPING_FEE = 100;
+  const qtys = { p1: 0, p2: 0, p3: 0 };
+
+  function changeQty(id, delta) {
+    qtys[id] = Math.max(0, qtys[id] + delta);
+    document.getElementById('qty-' + id).textContent = qtys[id];
+    const card = document.getElementById('card-' + id);
+    card.classList.toggle('active', qtys[id] > 0);
+    calcAmount();
+  }
 
   function calcAmount() {
-    const checked = [...document.querySelectorAll('input[name="products"]:checked')];
-    const subtotal = checked.reduce((sum, cb) => sum + (PRICES[cb.id] || 0), 0);
+    const subtotal = Object.keys(qtys).reduce((sum, id) => sum + qtys[id] * (PRICES[id] || 0), 0);
     const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : (subtotal > 0 ? SHIPPING_FEE : 0);
     const total = subtotal + shipping;
 
@@ -800,10 +865,6 @@
     document.getElementById('amount').value = total;
   }
 
-  document.querySelectorAll('input[name="products"]').forEach(cb => {
-    cb.addEventListener('change', calcAmount);
-  });
-
   function validateField(id, condition) {
     const field = document.getElementById('field-' + id);
     if (!field) return condition;
@@ -826,8 +887,13 @@
     const last5 = document.getElementById('transfer-last5').value.trim();
     const address = document.getElementById('address').value.trim();
     const shipping = document.querySelector('input[name="shipping"]:checked');
-    const products = [...document.querySelectorAll('input[name="products"]:checked')].map(c => c.value);
     const note = document.getElementById('order-note').value.trim();
+
+    // 組合品項字串，含數量
+    const productList = Object.keys(qtys)
+      .filter(id => qtys[id] > 0)
+      .map(id => `${NAMES[id]} x${qtys[id]}`)
+      .join(' / ');
 
     let valid = true;
     valid = validateField('name', name.length > 0) && valid;
@@ -844,7 +910,7 @@
       shippingError.style.display = 'none';
     }
 
-    if (products.length === 0) {
+    if (!productList) {
       alert('請至少選擇一項商品');
       valid = false;
     }
@@ -852,7 +918,7 @@
     if (!valid) return;
 
     if (SPREADSHEET_URL) {
-      const data = { name, phone, products: products.join(' / '), note, amount, transferTime, last5, shipping: shipping?.value, address };
+      const data = { name, phone, products: productList, note, amount, transferTime, last5, shipping: shipping?.value, address };
       fetch(SPREADSHEET_URL, {
         method: 'POST',
         body: JSON.stringify(data)
